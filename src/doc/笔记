@@ -1,0 +1,4 @@
+1、数据库数据存在乱码--解决方案，在数据库连接的URL中添加characterEncoding=utf8
+2、高版本mysql数据库存在SSL问题--解决方案：1.使用低版本jar包。。。在上述URL中添加useSSL=false
+3、在application.properties设置server.port=8080以及server.servlet.context-path=/hongbao/
+4、页面访问controller时不需要加.do做后缀

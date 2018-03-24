@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 30//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hongbao.dao.RedPacketDao">
+    <select id="getRedPacket" parameterType="long"
+            resultType="com.hongbao.pojo.RedPacket">
+        SELECT
+            id,
+            user_id     AS userId,
+            amount,
+            send_date   AS sendDate,
+            total,
+            unit_amount AS unitAmount,
+            stock,
+            version,
+            note
+        FROM T_RED_PACKET
+        WHERE id = #{id}
+    </select>
+
+    <update id="decreaseRedPacket">
+        UPDATE T_RED_PACKET
+        SET stock = stock - 1
+        WHERE id = #{id}
+    </update>
+    <!--
+      通过版本号扣减抢红包
+      每更新一次，版本增加1
+      其次增加对版本号的判断
+    -->
+    <update id="decreaseRedPacketForVersion">
+        UPDATE T_RED_PACKET
+        SET stock   = stock - 1,
+            version = version + 1
+        WHERE id = #{id}
+              AND version = #{version}
+    </update>
+</mapper>

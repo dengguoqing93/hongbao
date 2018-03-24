@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.0.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            //模拟30000个异步请求，进行并发
+            var max = 30000;
+            for (var i = 1; i <= max; i++) {
+                //Jquery的post请求，异步请求
+                $.post({
+                    url: "./userRedPacket/graRedPacketByRedis?redPacketId=5&userId=" + i,
+                    success: function (result) {
+                    }
+                });
+            }
+        })
+    </script>
+</head>
+<body>
+    <i>Hello World</i>
+</body>
+</html>

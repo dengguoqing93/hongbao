@@ -1,0 +1,1 @@
+local listKey = 'red_packet_list_'
